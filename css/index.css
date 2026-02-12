@@ -63,6 +63,18 @@ ul {
     margin: 0 auto;
 }
 
+.vt {
+  writing-mode: vertical-rl;
+}
+
+.vt ul {
+  direction: ltr;
+}
+
+.vt ol {
+  direction: ltr;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
