@@ -54,7 +54,7 @@ function load_table_con(title, content,containerId){
             const td = document.createElement('td')
             td.textContent = cell || ''
             td.className = 'copy-cell'
-            td.id = `cell-${rowIndex}-${colIndex}`
+            td.id = `con-${rowIndex}-${colIndex}`
             td.addEventListener('click',()=>{
               if (!cell) return
               navigator.clipboard.writeText(cell).then(()=>alert(`已複製：${cell}`))
@@ -104,7 +104,7 @@ function load_table_vow(title, content,containerId){
             const td = document.createElement('td')
             td.textContent = cell || ''
             td.className = 'copy-cell'
-            td.id = `cell-${rowIndex}-${colIndex}`
+            td.id = `vow-${rowIndex}-${colIndex}`
             td.addEventListener('click',()=>{
               if (!cell) return
               navigator.clipboard.writeText(cell).then(()=>alert(`已複製：${cell}`))
