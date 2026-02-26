@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>自動切換 Favicon 範例</title>
+  <!-- 初始 favicon -->
+  <link id="favicon" rel="icon" href="img/ico-1.png" type="image/png">
+</head>
+<body>
+  <h1>自動切換 Favicon Demo</h1>
+  <p>分頁圖示會每秒切換一次。</p>
+
+  <script>
+    // 1?? 多張圖示陣列
+    const icons = [
+      'img/ico-1.png',
+      'img/ico-2.png',
+      'img/ico-b.png'
+    ];
+
+    // 2?? 記錄目前是哪一張
+    let current = 0;
+
+    // 3?? 切換 favicon 函數
+    function switchFavicon() {
+      const link = document.getElementById('favicon');
+      // 避免快取，每次加時間戳
+      link.href = icons[current] + '?v=' + new Date().getTime();
+      // 換下一張
+      current = (current + 1) % icons.length;
+    }
+
+    // 4?? 設定間隔時間（ms），每 1000ms = 1 秒切換一次
+    setInterval(switchFavicon, 1000);
+  </script>
+</body>
+</html>
