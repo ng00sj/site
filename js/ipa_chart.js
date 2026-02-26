@@ -103,12 +103,13 @@ function load_table_vow(title, content,containerId){
         row.forEach((cell,colIndex) => {
             const td = document.createElement('td')
             td.textContent = cell || ''
-            tr.appendChild(td)
+            td.className = 'copy-cell'
             td.id = `cell-${rowIndex}-${colIndex}`
             td.addEventListener('click',()=>{
               if (!cell) return
               navigator.clipboard.writeText(cell).then(()=>alert(`已複製：${cell}`))
             })
+            tr.appendChild(td)
         })
         tbody.appendChild(tr)
     })
