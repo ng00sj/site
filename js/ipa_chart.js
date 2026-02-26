@@ -57,7 +57,7 @@ function load_table_con(title, content,containerId){
             td.id = `con-${rowIndex}-${colIndex}`
             td.addEventListener('click',()=>{
               if (!cell) return
-              navigator.clipboard.writeText(cell).then(()=>alert(`已複製：${cell}`))
+              navigator.clipboard.writeText(cell)
             })
             tr.appendChild(td)
         })
@@ -107,7 +107,7 @@ function load_table_vow(title, content,containerId){
             td.id = `vow-${rowIndex}-${colIndex}`
             td.addEventListener('click',()=>{
               if (!cell) return
-              navigator.clipboard.writeText(cell).then(()=>alert(`已複製：${cell}`))
+              navigator.clipboard.writeText(cell)
             })
             tr.appendChild(td)
         })
