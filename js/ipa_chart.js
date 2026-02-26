@@ -46,7 +46,7 @@ function load_table_con(title, content,containerId){
     thead.appendChild(trHead)
     table.appendChild(thead)
     
-    const tbody = document.createElement('tr')
+    const tbody = document.createElement('tbody')
     data_content.forEach((row,rowIndex)=>{
         const tr = document.createElement('tr')
         
@@ -96,7 +96,7 @@ function load_table_vow(title, content,containerId){
     thead.appendChild(tr)
     table.appendChild(thead)
     
-    const tbody = document.createElement('tr')
+    const tbody = document.createElement('body')
     
     data_content.forEach((row,rowIndex) =>{
         const tr = document.createElement('tr')
@@ -110,7 +110,7 @@ function load_table_vow(title, content,containerId){
               navigator.clipboard.writeText(cell).then(()=>alert(`已複製：${cell}`))
             })
         })
-        tbody.appendChild(tbody)
+        tbody.appendChild(tr)
     })
     table.appendChild(tbody)
     container.appendChild(table)
