@@ -28,7 +28,7 @@ function load_table_con(title, content,containerId){
     const data_content=rows_content.map(e => e.split(','))
     
     const table = document.createElement('table')
-    table.style.border = '1'
+    table.style.border = '1px'
     
     const thead = document.createElement('thead')
     const trHead = document.createElement('tr')
@@ -46,7 +46,7 @@ function load_table_con(title, content,containerId){
     thead.appendChild(trHead)
     table.appendChild(thead)
     
-    const tbody = document.createElement('tbody')
+    const tbody = document.createElement('tr')
     data_content.forEach((row,rowIndex)=>{
         const tr = document.createElement('tr')
         
@@ -57,11 +57,11 @@ function load_table_con(title, content,containerId){
             td.id = `cell-${rowIndex}-${colIndex}`
             td.addEventListener('click',()=>{
               if (!cell) return
-              navigator.clipboard.writeText(cell)
+              navigator.clipboard.writeText(cell).then(()=>alert(`已複製：${cell}`))
             })
-            tr.addChild(td)
+            tr.appendChild(td)
         })
-        tbody.addChild(tr)
+        tbody.appendChild(tr)
     })
     table.appendChild(tbody)
     container.appendChild(table)
@@ -76,7 +76,7 @@ function load_table_vow(title, content,containerId){
     const data_content=rows_content.map(e => e.split(','))
     
     const table = document.createElement('table')
-    table.style.border = '1'
+    table.style.border = '1px'
     
     const thead = document.createElement('thead')
     const tr = document.createElement('tr')
@@ -96,7 +96,7 @@ function load_table_vow(title, content,containerId){
     thead.appendChild(tr)
     table.appendChild(thead)
     
-    const tbody = document.createElement('tbody')
+    const tbody = document.createElement('tr')
     
     data_content.forEach((row,rowIndex) =>{
         const tr = document.createElement('tr')
@@ -107,7 +107,7 @@ function load_table_vow(title, content,containerId){
             td.id = `cell-${rowIndex}-${colIndex}`
             td.addEventListener('click',()=>{
               if (!cell) return
-              navigator.clipboard.writeText(cell)
+              navigator.clipboard.writeText(cell).then(()=>alert(`已複製：${cell}`))
             })
         })
         tbody.appendChild(tbody)
