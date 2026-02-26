@@ -14,7 +14,7 @@ fetch(SHEET_URL)
     });
 
     // 將資料放進網頁
-    document.getElementById('title').textContent = data.title;
+    document.getElementById('title').textContent = 114514; //data.title;
     document.getElementById('subtitle').textContent = data.subtitle;
     document.getElementById('content').textContent = data.content;
     document.getElementById('footer').textContent = data.footer;
