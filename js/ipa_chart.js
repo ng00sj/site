@@ -24,7 +24,7 @@ function load_table_con(title, content,containerId){
     container.innerHTML = ''
     
     const data_title=title.split(',')
-    const rows_content=content.split('\n\n')
+    const rows_content=content.trim().split('\n')
     const data_content=rows_content.map(e => e.split(','))
     
     const table = document.createElement('table')
@@ -72,7 +72,7 @@ function load_table_vow(title, content,containerId){
     container.innerHTML = ''
 
     const data_title=title.split(',')
-    const rows_content=content.split('\n\n')
+    const rows_content=content.trim().split('\n')
     const data_content=rows_content.map(e => e.split(','))
     
     const table = document.createElement('table')
