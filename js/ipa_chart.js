@@ -19,56 +19,99 @@ const vow_content=`閉,i,y,,,ɨ,ʉ,,,ɯ,u\n
 開,a,ɶ,,,ä,ɒ̈,,,ɑ,ɒ\n`
 
 
-function load_table_con(title, content){
+function load_table_con(title, content,containerId){
+    const container = document.getElementById(containerId)
+    container.innerHTML = ''
+    
     const data_title=title.split(',')
     const rows_content=content.split('\n\n')
     const data_content=rows_content.map(e => e.split(','))
-    document.write('<table border="1"><thead><tr><th style="width:10%;">方式＼部位</th>')
-    data_title.forEach(element => {
-        document.write('<th colspan="2">' + element + '</th>')
-    })
-    document.write('</tr></thead><tbody>')
-    data_content.forEach(e1=>{
-        document.write('<tr>')
-        e1.forEach(e2 => {
-            const id = `cell-${rowIndex}-${colIndex}`
-            document.write(`<td id="${id}" class="copy-cell">${e2 || ''}</td>`)
-        })
-        document.write('</tr>')
-    })
-    document.write('</tbody></table>')
-    setTimeout(() => {
-        const cells = document.querySelectorAll('.copy-cell')
-        cells.forEach(e2 => {
-            e2.addEventListener('click', () => {
-                const text = e2.textContent
-                if (!text) return
+    
+    const table = document.createElement('table')
+    table.style.border = '1'
+    
+    const thead = document.createElement('thead')
+    const trHead = document.createElement('tr')
+    const th0 = document.createElement('th')
+    th0.textContent = '方式＼部位'
+    th0.style.width = '10%'
+    trHead.appendChild(th0)
 
-                navigator.clipboard.writeText(text).then(() => {
-                    alert(`已複製：${text}`)
-                }).catch(err => {
-                    console.error('複製失敗', err)
-                })
+    data_title.forEach(element => {
+        const th = document.createElement('th')
+        th.colSpan = 2
+        th.textContent = element
+        trHead.appendChild(th)
+    })
+    thead.appendChild(trHead)
+    table.appendChild(thead)
+    
+    const tbody = document.createElement('tbody')
+    data_content.forEach((row,rowIndex)=>{
+        const tr = document.createElement('tr')
+        
+        row.forEach((cell,colIndex) => {
+            const td = document.createElement('td')
+            td.textContent = cell || ''
+            td.className = 'copy-cell'
+            td.id = `cell-${rowIndex}-${colIndex}`
+            td.addEventListener('click',()=>{
+              if (!cell) return
+              navigator.clipboard.writeText(cell)
             })
+            tr.addChild(td)
         })
-    }, 0)
+        tbody.addChild(tr)
+    })
+    table.appendChild(tbody)
+    container.appendChild(table)
 }
 
-function load_table_vow(title, content){
+function load_table_vow(title, content,containerId){
+    const container = document.getElementById(containerId)
+    container.innerHTML = ''
+
     const data_title=title.split(',')
     const rows_content=content.split('\n\n')
     const data_content=rows_content.map(e => e.split(','))
-    document.write('<table border="1"><thead><tr><th style="width:10%;">舌位</th>')
+    
+    const table = document.createElement('table')
+    table.style.border = '1'
+    
+    const thead = document.createElement('thead')
+    const tr = document.createElement('tr')
+    
+    const th0 = document.createElement('th')
+    th0.textContent = '舌位'
+    th0.style.width = '10%'
+    tr.appendChild(th0)
+    
     data_title.forEach(element => {
-        document.write('<th colspan="2">' + element + '</th>')
+        const th = document.createElement('th')
+        th.colSpan = 2
+        th.textContent = element
+        tr.appendChild(th)
     })
-    document.write('</tr></thead><tbody>')
-    data_content.forEach(e1=>{
-        document.write('<tr>')
-        e1.forEach(e2 => {
-            document.write('<td>'+(e2||'')+'</td>')
+    
+    thead.appendChild(tr)
+    table.appendChild(thead)
+    
+    const tbody = document.createElement('tbody')
+    
+    data_content.forEach((row,rowIndex) =>{
+        const tr = document.createElement('tr')
+        row.forEach((cell,colIndex) => {
+            const td = document.createElement('td')
+            td.textContent = cell || ''
+            tr.appendChild(td)
+            td.id = `cell-${rowIndex}-${colIndex}`
+            td.addEventListener('click',()=>{
+              if (!cell) return
+              navigator.clipboard.writeText(cell)
+            })
         })
-        document.write('</tr>')
+        tbody.appendChild(tbody)
     })
-    document.write('</tbody></table>')
+    table.appendChild(tbody)
+    container.appendChild(table)
 }

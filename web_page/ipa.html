@@ -17,12 +17,14 @@
         <h1>國際音標表</h1>
         <p>放個國際音標表，方便大家拷貝。</p>
         <h2>輔音</h2>
-        <script>
-            load_table_con(con_title,con_content);
-        </script>
+        <div id="table_con"></div>
         <h2>元音</h2>
+        <div id="table_vow"></div>
         <script>
-            load_table_vow(vow_title,vow_content);
+            load_table_con(con_title,con_content,'table_con');
+        </script>
+        <script>
+            load_table_vow(vow_title,vow_content,'table_vow');
         </script>
         <hr>
         <div class="button01" onclick="window.location.href='../index.html'">回首頁</div>
