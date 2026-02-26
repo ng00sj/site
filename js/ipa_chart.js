@@ -96,7 +96,7 @@ function load_table_vow(title, content,containerId){
     thead.appendChild(tr)
     table.appendChild(thead)
     
-    const tbody = document.createElement('body')
+    const tbody = document.createElement('tbody')
     
     data_content.forEach((row,rowIndex) =>{
         const tr = document.createElement('tr')
