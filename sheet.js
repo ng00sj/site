@@ -1,4 +1,4 @@
-const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQtbiEBEV5woM-QiXxTPC2PZByrWig3vAQcY4gt_uJ9obeNsNfSXhPRMorit2YG8BtfJSRbTUlUSTbJ/pub?gid=0&single=true&output=csv';
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSvcc-ptXOCDJ8ARre_DVNchirMd4prIowpsNoOFfA6Meode-JWa7LYBSTq-FBASrM_maDN1vjgo7U_/pub?gid=0&single=true&output=csv';
 
 fetch(SHEET_URL)
   .then(res => res.text())
@@ -14,7 +14,7 @@ fetch(SHEET_URL)
     });
 
     // 將資料放進網頁
-    document.getElementById('title').textContent = 114514; //data.title;
+    document.getElementById('title').textContent = data.title;
     document.getElementById('subtitle').textContent = data.subtitle;
     document.getElementById('content').textContent = data.content;
     document.getElementById('footer').textContent = data.footer;
