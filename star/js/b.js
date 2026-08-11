@@ -1,6 +1,6 @@
 const el_butRotX = document.getElementById('butRotX');
-const el_butRotY = document.getElementById('butRotX');
-const el_butRotZ = document.getElementById('butRotX');
+const el_butRotY = document.getElementById('butRotY');
+const el_butRotZ = document.getElementById('butRotZ');
 
 el_butRotX.addEventListener('click', () => {
   rotX();
