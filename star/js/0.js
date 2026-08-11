@@ -5,16 +5,16 @@ let radius = 50;
 let qTotal = [1,0,0,0];
 const sq2 = Math.sqrt(2);
 let vPoints = [
-  [radius,0,0],
-  [-radius,0,0],
-  [radius/sq2,radius/sq2,0],
-  [-radius/sq2,-radius/sq2,0],
-  [radius/sq2,-radius/sq2,0],
-  [-radius/sq2,radius/sq2,0],
-  [0,radius,0],
-  [0,-radius,0],
-  [0,0,radius],
-  [0,0,-radius],
+  [1,0,0],
+  [-1,0,0],
+  [1/sq2,1/sq2,0],
+  [-1/sq2,-1/sq2,0],
+  [1/sq2,-1/sq2,0],
+  [-1/sq2,1/sq2,0],
+  [0,1,0],
+  [0,-1,0],
+  [0,0,1],
+  [0,0,-1],
 ];
 
 const qStepX = qMake(Math.PI/10,[1,0,0]);
@@ -44,14 +44,14 @@ function redraw() {
   vPoints.forEach(vPoint=>{
     const v = vRot(qTotal, vPoint);
     if (v[2]>0) {
-      draw(v[0], v[1]);
+      draw(v[0]*radius, v[1]*radius);
     }
   });
 }
 
 function reRun() {
-  radius = Math.min(canvas.width, canvas.height)*0.3;
   resizeCanvas();
+  radius = Math.min(canvas.width, canvas.height)*0.3;
   redraw();
 }
 
