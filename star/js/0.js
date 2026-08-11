@@ -3,12 +3,12 @@ const ctx = canvas.getContext('2d');
 
 let qTotal = [1,0,0,0];
 let vPoints = [
-  [20,0,0],
-  [-20,0,0],
-  [0,20,0],
-  [0,-20,0],
-  [0,0,20],
-  [0,0,-20],
+  [50,0,0],
+  [-50,0,0],
+  [0,50,0],
+  [0,-50,0],
+  [0,0,50],
+  [0,0,-50],
 ];
 
 const qStepX = qMake(Math.PI/10,[1,0,0]);
@@ -22,7 +22,7 @@ function resizeCanvas() {
 
 function draw(rX, rY) {
   ctx.beginPath();
-  ctx.arc(canvas.width/2+rX, canvas.height/2+rY,1,0,2*Math.PI);
+  ctx.arc(canvas.width/2+rX, canvas.height/2+rY,5,0,2*Math.PI);
   ctx.fillStyle = "white";
   ctx.fill();
 }
