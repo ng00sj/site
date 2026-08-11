@@ -50,7 +50,7 @@ function redraw() {
 }
 
 function reRun() {
-  radius = min(canvas.width, canvas.height)*0.3;
+  radius = Math.min(canvas.width, canvas.height)*0.3;
   resizeCanvas();
   redraw();
 }
