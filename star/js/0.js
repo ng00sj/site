@@ -1,6 +1,6 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const radius = 50;
+let radius = 50;
 
 let qTotal = [1,0,0,0];
 const sq2 = Math.sqrt(2);
@@ -49,6 +49,12 @@ function redraw() {
   });
 }
 
+function reRun() {
+  radius = min(canvas.width, canvas.height)*0.3;
+  resizeCanvas();
+  redraw();
+}
+
 function rotX() {
   qTotal = qMult(qStepX, qTotal);
   redraw();
@@ -64,5 +70,6 @@ function rotZ() {
   redraw();
 }
 
-resizeCanvas();
-redraw();
+reRun();
+
+window.addEventListener('resize', reRun);
