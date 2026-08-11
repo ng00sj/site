@@ -14,7 +14,7 @@ function qMult(q1,q2) {
   ]
 }
 
-function rotVec(q,v) {
+function vRot(q,v) {
   const qv = [0,...v];
   return qMult(q,qMult(qv,qConj(q))).slice(1);
 }
