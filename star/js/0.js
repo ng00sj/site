@@ -2,7 +2,14 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 let qTotal = [1,0,0,0];
-let vPoint = [20,0,0,0];
+let vPoints = [
+  [20,0,0],
+  [-20,0,0],
+  [0,20,0],
+  [0,-20,0],
+  [0,0,20],
+  [0,0,-20],
+];
 
 const qStepX = qMake(Math.PI/10,[1,0,0]);
 const qStepY = qMake(Math.PI/10,[0,1,0]);
@@ -22,10 +29,10 @@ function draw(rX, rY) {
 
 function redraw() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  const v = vRot(qTotal, vPoint);
-  const rX = v[0];
-  const rY = v[1];
-  draw(rX, rY);
+  vPoints.forEach(vPoint=>{
+    const v = vRot(qTotal, vPoint);
+    draw(v[0], v[1]);
+  });
 }
 
 function rotX() {
