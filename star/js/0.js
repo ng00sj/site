@@ -6,7 +6,7 @@ let vPoint = [20,0,0,0];
 
 const qStepX = qMake(Math.PI/10,[1,0,0]);
 const qStepY = qMake(Math.PI/10,[0,1,0]);
-const qStepY = qMake(Math.PI/10,[0,0,1]);
+const qStepZ = qMake(Math.PI/10,[0,0,1]);
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
