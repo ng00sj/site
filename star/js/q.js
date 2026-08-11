@@ -18,3 +18,8 @@ function rotVec(q,v) {
   const qv = [0,...v];
   return qMult(q,qMult(qv,qConj(q))).slice(1);
 }
+
+function qMake(theta,unit) {
+  const s = Math.sin(theta/2);
+  return [Math.cos(theta/2),s*unit[0],s*unit[1],s*unit[2]];
+}
