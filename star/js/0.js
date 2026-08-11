@@ -1,14 +1,20 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+const radius = 50;
 
 let qTotal = [1,0,0,0];
+const sq2 = Math.sqrt(2);
 let vPoints = [
-  [50,0,0],
-  [-50,0,0],
-  [0,50,0],
-  [0,-50,0],
-  [0,0,50],
-  [0,0,-50],
+  [radius,0,0],
+  [-radius,0,0],
+  [radius/sq2,radius/sq2,0],
+  [-radius/sq2,-radius/sq2,0],
+  [radius/sq2,-radius/sq2,0],
+  [-radius/sq2,radius/sq2,0],
+  [0,radius,0],
+  [0,-radius,0],
+  [0,0,radius],
+  [0,0,-radius],
 ];
 
 const qStepX = qMake(Math.PI/10,[1,0,0]);
@@ -29,9 +35,17 @@ function draw(rX, rY) {
 
 function redraw() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
+  
+  ctx.beginPath();
+  ctx.arc(canvas.width/2, canvas.height/2,radius,0,2*Math.PI);
+  ctx.fillStyle = "blue";
+  ctx.fill();
+  
   vPoints.forEach(vPoint=>{
     const v = vRot(qTotal, vPoint);
-    draw(v[0], v[1]);
+    if (v[2]>0) {
+      draw(v[0], v[1]);
+    }
   });
 }
 
@@ -51,4 +65,4 @@ function rotZ() {
 }
 
 resizeCanvas();
-redraw(rX, rY);
+redraw();
