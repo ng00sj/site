@@ -1,12 +1,3 @@
-#butRotX {
-  position: fixed;
-  bottom: 20px;
-  left: 25%;
-  transform: translateX(-50%);
-  height: 50px;
-  z-index: 10;
-}
-
 .but {
   padding: 12px 24px;
   background-color: blue;
@@ -15,4 +6,29 @@
   border-radius: 25px;
   font-size: 20px;
   cursor: pointer;
+}
+
+#butRotX {
+  position: fixed;
+  bottom: 20px;
+  left: 25%;
+  transform: translateX(-50%);
+  height: 50px;
+  z-index: 10;
+}
+#butRotY {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 50px;
+  z-index: 10;
+}
+#butRotZ {
+  position: fixed;
+  bottom: 20px;
+  left: 75%;
+  transform: translateX(-50%);
+  height: 50px;
+  z-index: 10;
 }
