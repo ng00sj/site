@@ -4,18 +4,21 @@ let radius = 50;
 
 let qTotal = [1,0,0,0];
 const sq2 = Math.sqrt(2);
-let vPoints = [
-  [1,0,0],
-  [-1,0,0],
-  [1/sq2,1/sq2,0],
-  [-1/sq2,-1/sq2,0],
-  [1/sq2,-1/sq2,0],
-  [-1/sq2,1/sq2,0],
-  [0,1,0],
-  [0,-1,0],
-  [0,0,1],
-  [0,0,-1],
-];
+let vPoints = [];
+
+fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((csvText)=>{
+  const result = Papa.parse(csvText, {
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results){
+      starData = results.data;
+      for (let i=0; i<starData.length; i++) {
+        const _ra = starData[i].ra/180*Math.PI;
+        vPoints.push([Math.cos(_ra), Math.sin(_ra), Math.sin(starData[i].deg/180*Math.PI)]);
+      }
+    }
+  });
+});
 
 const qStepX = qMake(Math.PI/10,[1,0,0]);
 const qStepY = qMake(Math.PI/10,[0,1,0]);
