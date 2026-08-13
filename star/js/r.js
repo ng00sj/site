@@ -22,6 +22,6 @@ canvas.addEventListener('mousemove', (e)=>{
     const dragC = Math.sqrt(dragX**2+dragY**2);
     const dragQ = qMake(dragC/radius, [-dragY/dragC, dragX/dragC, 0]);
     qTotal = qMult(dragQ, dragStartQTotal);
-    reDraw();
+    redraw();
   }
 })
