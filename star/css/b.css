@@ -32,3 +32,20 @@
   height: 50px;
   z-index: 10;
 }
+
+.text {
+  padding: 12px 24px;
+  color: white;
+  border: none;
+  font-size: 10px;
+}
+
+#text0 {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 20px;
+  width: 90%;
+  z-index: 10;
+}
