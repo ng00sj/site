@@ -17,7 +17,10 @@ fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((cs
         const _ra = starData[i].ra/180*Math.PI;
         const _dec = starData[i].dec/180*Math.PI
         vPoints.push([Math.cos(_ra)*Math.cos(_dec), Math.sin(_ra)*Math.cos(_dec), Math.sin(_dec)]);
-        pointsColor.push();
+        const _r = starData[i].add_r*255;
+        const _g = starData[i].add_g*255;
+        const _b = starData[i].add_b*255;
+        pointsColor.push('rgb('+_r+','+_g+','+_b+')');
       }
     }
   });
@@ -32,10 +35,10 @@ function resizeCanvas() {
   canvas.height = window.innerHeight;
 }
 
-function draw(rX, rY) {
+function draw(rX, rY, rgb) {
   ctx.beginPath();
   ctx.arc(canvas.width/2+rX, canvas.height/2+rY,5,0,2*Math.PI);
-  ctx.fillStyle = "white";
+  ctx.fillStyle = rgb;
   ctx.fill();
 }
 
@@ -47,10 +50,10 @@ function redraw() {
   ctx.fillStyle = "blue";
   ctx.fill();
   
-  vPoints.forEach(vPoint=>{
+  vPoints.forEach((vPoint,index)=>{
     const v = vRot(qTotal, vPoint);
     if (v[2]>0) {
-      draw(v[0]*radius, v[1]*radius);
+      draw(v[0]*radius, v[1]*radius, pointsColor[index]);
     }
   });
 }
