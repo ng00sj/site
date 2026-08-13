@@ -1,4 +1,4 @@
-#after 0.js
+//after 0.js
 
 let drag = false;
 let dragStartX = 0;
