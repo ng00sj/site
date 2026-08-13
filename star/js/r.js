@@ -25,3 +25,25 @@ canvas.addEventListener('mousemove', (e)=>{
     redraw();
   }
 })
+
+canvas.addEventListener('touchstart', (e)=>{
+  drag = true;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  dragStartQTotal = qTotal;
+})
+
+canvas.addEventListener('touchend', (e)=>{
+  drag = false;
+})
+
+canvas.addEventListener('touchmove', (e)=>{
+  if (drag) {
+    const dragX = e.clientX-dragStartX;
+    const dragY = e.clientY-dragStartY;
+    const dragC = Math.sqrt(dragX**2+dragY**2);
+    const dragQ = qMake(dragC/radius, [-dragY/dragC, dragX/dragC, 0]);
+    qTotal = qMult(dragQ, dragStartQTotal);
+    redraw();
+  }
+})
