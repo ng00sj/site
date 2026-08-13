@@ -14,7 +14,7 @@ fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((cs
       starData = results.data;
       for (let i=0; i<starData.length; i++) {
         const _ra = starData[i].ra/180*Math.PI;
-        vPoints.push([Math.cos(_ra), Math.sin(_ra), Math.sin(starData[i].deg/180*Math.PI)]);
+        vPoints.push([Math.cos(_ra), Math.sin(_ra), Math.sin(starData[i].dec/180*Math.PI)]);
       }
     }
   });
