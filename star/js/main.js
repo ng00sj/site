@@ -5,6 +5,7 @@ let radius = 50;
 let qTotal = [1,0,0,0];
 const sq2 = Math.sqrt(2);
 let vPoints = [];
+let pointsColor = [];
 
 fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((csvText)=>{
   const result = Papa.parse(csvText, {
@@ -16,6 +17,7 @@ fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((cs
         const _ra = starData[i].ra/180*Math.PI;
         const _dec = starData[i].dec/180*Math.PI
         vPoints.push([Math.cos(_ra)*Math.cos(_dec), Math.sin(_ra)*Math.cos(_dec), Math.sin(_dec)]);
+        pointsColor.push();
       }
     }
   });
