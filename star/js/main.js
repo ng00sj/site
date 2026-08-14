@@ -39,7 +39,7 @@ function resizeCanvas() {
 
 function draw(rX, rY, rgb, size) {
   ctx.beginPath();
-  ctx.arc(canvas.width/2+rX, canvas.height/2+rY,5,0,2*Math.PI);
+  ctx.arc(canvas.width/2+rX, canvas.height/2+rY,size,0,2*Math.PI);
   ctx.fillStyle = rgb;
   ctx.fill();
 }
