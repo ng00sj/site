@@ -6,6 +6,7 @@ let qTotal = [1,0,0,0];
 const sq2 = Math.sqrt(2);
 let vPoints = [];
 let pointsColor = [];
+let pointsSize = [];
 
 fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((csvText)=>{
   const result = Papa.parse(csvText, {
@@ -21,6 +22,7 @@ fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((cs
         const _g = starData[i].add_g*255;
         const _b = starData[i].add_b*255;
         pointsColor.push('rgb('+_r+','+_g+','+_b+')');
+        pointsSize.push(0.01*Math.exp(-starData[i].phot_g_mean_mag));
       }
     }
   });
@@ -35,7 +37,7 @@ function resizeCanvas() {
   canvas.height = window.innerHeight;
 }
 
-function draw(rX, rY, rgb) {
+function draw(rX, rY, rgb, size) {
   ctx.beginPath();
   ctx.arc(canvas.width/2+rX, canvas.height/2+rY,5,0,2*Math.PI);
   ctx.fillStyle = rgb;
@@ -53,7 +55,7 @@ function redraw() {
   vPoints.forEach((vPoint,index)=>{
     const v = vRot(qTotal, vPoint);
     if (v[2]>0) {
-      draw(v[0]*radius, v[1]*radius, pointsColor[index]);
+      draw(v[0]*radius, v[1]*radius, pointsColor[index], pointsSize[index]);
     }
   });
 }
