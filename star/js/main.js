@@ -55,7 +55,7 @@ function redraw() {
   vPoints.forEach((vPoint,index)=>{
     const v = vRot(qTotal, vPoint);
     if (v[2]>0) {
-      draw(v[0]*radius, v[1]*radius, pointsColor[index], pointsSize[index]);
+      draw(v[0]*radius, v[1]*radius, pointsColor[index], radius*pointsSize[index]);
     }
   });
 }
