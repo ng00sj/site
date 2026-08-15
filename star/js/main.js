@@ -8,9 +8,11 @@ let vPoints = [];
 let pointsColor = [];
 let pointsSize = [];
 
-const qStepX = qMake(Math.PI/10,[1,0,0]);
-const qStepY = qMake(Math.PI/10,[0,1,0]);
-const qStepZ = qMake(Math.PI/10,[0,0,1]);
+let zoom = 0.3;
+
+const qStepX = qMake(Math.PI/40,[1,0,0]);
+const qStepY = qMake(Math.PI/40,[0,1,0]);
+const qStepZ = qMake(Math.PI/40,[0,0,1]);
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -29,21 +31,20 @@ function redraw() {
   
   ctx.beginPath();
   ctx.arc(canvas.width/2, canvas.height/2,radius,0,2*Math.PI);
-  ctx.fillStyle = "blue";
+  ctx.fillStyle = "black";
   ctx.fill();
   
   vPoints.forEach((vPoint,index)=>{
     const v = vRot(qTotal, vPoint);
     if (v[2]>0) {
       draw(v[0]*radius, v[1]*radius, pointsColor[index], radius*pointsSize[index]);
-      console.log(radius*pointsSize[index]);
     }
   });
 }
 
 function reRun() {
   resizeCanvas();
-  radius = Math.min(canvas.width, canvas.height)*0.3;
+  radius = Math.min(canvas.width, canvas.height)*zoom;
   redraw();
 }
 
@@ -60,6 +61,14 @@ function rotY() {
 function rotZ() {
   qTotal = qMult(qStepZ, qTotal);
   redraw();
+}
+
+function zoomBig() {
+  if (zoom<10) {zoom*=1.1;}
+}
+
+function zoomSmall() {
+  if (zoom>0.1) {zoom*=0.9;}
 }
 
 fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((csvText)=>{
