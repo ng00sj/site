@@ -8,27 +8,6 @@ let vPoints = [];
 let pointsColor = [];
 let pointsSize = [];
 
-fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((csvText)=>{
-  const result = Papa.parse(csvText, {
-    header: true,
-    skipEmptyLines: true,
-    complete: function(results){
-      const starData = results.data;
-      for (let i=0; i<starData.length; i++) {
-        const _ra = starData[i].ra/180*Math.PI;
-        const _dec = starData[i].dec/180*Math.PI
-        vPoints.push([Math.cos(_ra)*Math.cos(_dec), Math.sin(_ra)*Math.cos(_dec), Math.sin(_dec)]);
-        const _r = starData[i].add_r*255;
-        const _g = starData[i].add_g*255;
-        const _b = starData[i].add_b*255;
-        pointsColor.push('rgb('+_r+','+_g+','+_b+')');
-        pointsSize.push(Math.exp(-starData[i].phot_g_mean_mag));
-      }
-      reDraw();
-    }
-  });
-});
-
 const qStepX = qMake(Math.PI/10,[1,0,0]);
 const qStepY = qMake(Math.PI/10,[0,1,0]);
 const qStepZ = qMake(Math.PI/10,[0,0,1]);
@@ -83,6 +62,24 @@ function rotZ() {
   redraw();
 }
 
-reRun();
-
-window.addEventListener('resize', reRun);
+fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((csvText)=>{
+  const result = Papa.parse(csvText, {
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results){
+      const starData = results.data;
+      for (let i=0; i<starData.length; i++) {
+        const _ra = starData[i].ra/180*Math.PI;
+        const _dec = starData[i].dec/180*Math.PI
+        vPoints.push([Math.cos(_ra)*Math.cos(_dec), Math.sin(_ra)*Math.cos(_dec), Math.sin(_dec)]);
+        const _r = starData[i].add_r*255;
+        const _g = starData[i].add_g*255;
+        const _b = starData[i].add_b*255;
+        pointsColor.push('rgb('+_r+','+_g+','+_b+')');
+        pointsSize.push(Math.exp(-starData[i].phot_g_mean_mag));
+      }
+      reRun();
+      window.addEventListener('resize', reRun);
+    }
+  });
+});
