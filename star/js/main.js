@@ -65,10 +65,12 @@ function rotZ() {
 
 function zoomBig() {
   if (zoom<10) {zoom*=1.1;}
+  reRun();
 }
 
 function zoomSmall() {
   if (zoom>0.1) {zoom*=0.9;}
+  reRun();
 }
 
 fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((csvText)=>{
@@ -87,6 +89,7 @@ fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((cs
         pointsColor.push('rgb('+_r+','+_g+','+_b+')');
         pointsSize.push(0.2*Math.exp(-starData[i].phot_g_mean_mag));
       }
+      document.getElementById('text1').display = 'none';
       reRun();
       window.addEventListener('resize', reRun);
     }
