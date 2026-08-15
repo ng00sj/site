@@ -20,16 +20,18 @@ canvas.addEventListener('mousemove', (e)=>{
     const dragX = e.clientX-dragStartX;
     const dragY = e.clientY-dragStartY;
     const dragC = Math.sqrt(dragX**2+dragY**2);
-    const dragQ = qMake(dragC/radius, [-dragY/dragC, dragX/dragC, 0]);
-    qTotal = qMult(dragQ, dragStartQTotal);
-    redraw();
+    if (dragC>0){
+      const dragQ = qMake(dragC/radius, [-dragY/dragC, dragX/dragC, 0]);
+      qTotal = qMult(dragQ, dragStartQTotal);
+      redraw();
+    }
   }
 })
 
 canvas.addEventListener('touchstart', (e)=>{
   drag = true;
-  dragStartX = e.clientX;
-  dragStartY = e.clientY;
+  dragStartX = e.touches[0].clientX;
+  dragStartY = e.touches[0].clientY;
   dragStartQTotal = qTotal;
 })
 
@@ -38,12 +40,15 @@ canvas.addEventListener('touchend', (e)=>{
 })
 
 canvas.addEventListener('touchmove', (e)=>{
+  e.preventDefault();
   if (drag) {
-    const dragX = e.clientX-dragStartX;
-    const dragY = e.clientY-dragStartY;
+    const dragX = e.touches[0].clientX-dragStartX;
+    const dragY = e.touches[0].clientY-dragStartY;
     const dragC = Math.sqrt(dragX**2+dragY**2);
-    const dragQ = qMake(dragC/radius, [-dragY/dragC, dragX/dragC, 0]);
-    qTotal = qMult(dragQ, dragStartQTotal);
-    redraw();
+    if (dragC>0){
+      const dragQ = qMake(dragC/radius, [-dragY/dragC, dragX/dragC, 0]);
+      qTotal = qMult(dragQ, dragStartQTotal);
+      redraw();
+    }
   }
-})
+}, { passive: false })
