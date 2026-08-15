@@ -13,7 +13,7 @@ fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((cs
     header: true,
     skipEmptyLines: true,
     complete: function(results){
-      starData = results.data;
+      const starData = results.data;
       for (let i=0; i<starData.length; i++) {
         const _ra = starData[i].ra/180*Math.PI;
         const _dec = starData[i].dec/180*Math.PI
@@ -22,8 +22,9 @@ fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((cs
         const _g = starData[i].add_g*255;
         const _b = starData[i].add_b*255;
         pointsColor.push('rgb('+_r+','+_g+','+_b+')');
-        pointsSize.push(0.01*Math.exp(-starData[i].phot_g_mean_mag));
+        pointsSize.push(Math.exp(-starData[i].phot_g_mean_mag));
       }
+      reDraw();
     }
   });
 });
@@ -56,6 +57,7 @@ function redraw() {
     const v = vRot(qTotal, vPoint);
     if (v[2]>0) {
       draw(v[0]*radius, v[1]*radius, pointsColor[index], radius*pointsSize[index]);
+      console.log(radius*pointsSize[index]);
     }
   });
 }
