@@ -1,0 +1,43 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+div {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+.group {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.block {
+  position: absolute;
+}
+
+.wood_00 {
+  background-image: url('../mat/wood_00.jpg');
+  background-size: 20vw;
+  background-position: center;
+}
+
+.wood_01 {
+  background-image: url('../mat/wood_01.jpg');
+  background-size: 10vw;
+  background-position: center;
+}
+
+.paper {
+  background-color: #fffec8;
+}
