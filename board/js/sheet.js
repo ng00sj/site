@@ -17,12 +17,12 @@ fetch(SHEET_URL)
         const bigDiv= document.createElement('div');
         const name= document.createElement('h2');
         name.innerHTML = item['name'];
-const time = document.createElement('p');
+//const time = document.createElement('p');
 time.innerHTML = item['time'];
         const content= document.createElement('p');
         content.innerHTML = item['content'];
         bigDiv.appendChild(name);
-        bigDiv.appendChild(time);
+        //bigDiv.appendChild(time);
 bigDiv.appendChild(content);
         document.getElementById('text').appendChild(bigDiv);
     });
