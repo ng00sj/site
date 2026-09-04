@@ -19,9 +19,9 @@ fetch(SHEET_URL)
         name.innerHTML = item['name'];
         const content= document.createElement('p');
         content.innerHTML = item['content'];
-        bigDiv.addChild(name);
-        bigDiv.addChild(content);
-        document.getElementById('text').addChild(bigDiv);
+        bigDiv.appendChild(name);
+        bigDiv.appendChild(content);
+        document.getElementById('text').appendChild(bigDiv);
     })
   })
   .catch(err => console.error('讀取 Sheet 失敗', err));
