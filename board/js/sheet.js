@@ -23,5 +23,4 @@ fetch(SHEET_URL)
         bigDiv.appendChild(content);
         document.getElementById('text').appendChild(bigDiv);
     })
-  })
-  .catch(err => console.error('讀取 Sheet 失敗', err));
+  });
