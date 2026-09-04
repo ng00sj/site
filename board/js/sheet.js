@@ -18,7 +18,7 @@ fetch(SHEET_URL)
         const name= document.createElement('h2');
         name.innerHTML = item['name'];
 //const time = document.createElement('p');
-time.innerHTML = item['time'];
+//time.innerHTML = item['time'];
         const content= document.createElement('p');
         content.innerHTML = item['content'];
         bigDiv.appendChild(name);
