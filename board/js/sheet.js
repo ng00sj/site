@@ -22,5 +22,6 @@ fetch(SHEET_URL)
         bigDiv.appendChild(name);
         bigDiv.appendChild(content);
         document.getElementById('text').appendChild(bigDiv);
-    })
+    });
+document.getElementById('loading').hidden=true;
   });
