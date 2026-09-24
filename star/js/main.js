@@ -87,7 +87,7 @@ fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((cs
         const _g = starData[i].add_g*255;
         const _b = starData[i].add_b*255;
         pointsColor.push('rgb('+_r+','+_g+','+_b+')');
-        pointsSize.push(0.2*Math.exp(-starData[i].phot_g_mean_mag));
+        pointsSize.push(0.04*Math.exp(-0.4starData[i].phot_g_mean_mag));
       }
       document.getElementById('text1').style.display = 'none';
       reRun();
