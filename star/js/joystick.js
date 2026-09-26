@@ -2,7 +2,7 @@
 
 const el_base = document.getElementById('stick-base');
 const el_stick = document.getElementById('stick');
-const baseR = el_base.clientWidth / 2;
+let baseR = (el_base.clientWidth-el_stick.clientWidth) / 2;
 
 let stickDrag = false;
 let stickDragStartX = 0
@@ -31,6 +31,7 @@ window.addEventListener('mouseup', (e)=>{
 
 window.addEventListener('mousemove', (e)=>{
   if (stickDrag){
+    baseR = (el_base.clientWidth-el_stick.clientWidth) / 2;
     let stickDragX = e.clientX-stickDragStartX;
     let stickDragY = e.clientY-stickDragStartY;
     const stickDragR = Math.sqrt(stickDragX**2+stickDragY**2);
