@@ -91,7 +91,7 @@ function zoomSmall() {
   reRun();
 }
 
-function zoomSmall() {
+function zoomReset() {
   zoom=0.3;
   urlParams.set('z', String(zoom));
   RenewUrlPar();
