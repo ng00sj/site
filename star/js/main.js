@@ -1,5 +1,13 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+const urlParams = new URLSearchParams(window.location.search);
+//const par_q1 = urlParams.get('p1');
+//const par_q2 = urlParams.get('p2');
+//const par_q3 = urlParams.get('p3');
+//const par_q4 = urlParams.get('p4');
+const par_zoom = parseFloat(urlParams.get('z')) || 0.3;
+
+
 let radius = 50;
 
 let qTotal = [1,0,0,0];
@@ -8,7 +16,12 @@ let vPoints = [];
 let pointsColor = [];
 let pointsSize = [];
 
-let zoom = 0.3;
+if (urlParams.has('z') && (par_zoom>=0.1) && (par_zoom<=10)) {
+  let zoom = par_zoom;
+} else {
+  let zoom = 0.3;
+}
+
 
 const qStepX = qMake(Math.PI/40,[1,0,0]);
 const qStepY = qMake(Math.PI/40,[0,1,0]);
@@ -64,13 +77,19 @@ function rotZ() {
 }
 
 function zoomBig() {
-  if (zoom<10) {zoom*=1.1;}
+  if (zoom<10) {zoom*=1.1;urlParams.set('z', String(zoom)); RenewUrlPar();}
   reRun();
 }
 
 function zoomSmall() {
-  if (zoom>0.1) {zoom*=0.9;}
+  if (zoom>0.1) {zoom*=0.9;urlParams.set('z', String(zoom)); RenewUrlPar();}
   reRun();
+}
+
+function RenewUrlPar() {
+  const newQueryString = urlParams.toString() ? `?${urlParams.toString()}` : '';
+  const newUrl = `${window.location.pathname}${newQueryString}`;
+  window.history.pushState({ path: newUrl }, '', newUrl);
 }
 
 fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((csvText)=>{
