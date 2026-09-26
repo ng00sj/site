@@ -35,7 +35,7 @@
 #butZoomBig {
   position: fixed;
   top: 20px;
-  left: 40%;
+  left: 25%;
   transform: translateX(-50%);
   height: 50px;
   z-index: 10;
@@ -43,7 +43,15 @@
 #butZoomSmall {
   position: fixed;
   top: 20px;
-  left: 60%;
+  left: 75%;
+  transform: translateX(-50%);
+  height: 50px;
+  z-index: 10;
+}
+#butZoomReset {
+  position: fixed;
+  top: 20px;
+  left: 50%;
   transform: translateX(-50%);
   height: 50px;
   z-index: 10;
