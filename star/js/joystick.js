@@ -10,6 +10,7 @@ let stickDragStartY = 0;
 
 let outputX=0;
 let outputY=0;
+let outputR=0;
 
 function resetStick(){
   el_stick.style.left = '50%';
@@ -37,7 +38,7 @@ window.addEventListener('mousemove', (e)=>{
     const stickDragR = Math.sqrt(stickDragX**2+stickDragY**2);
     outputX = stickDragX / stickDragR;
     outputY = stickDragY / stickDragR;
-    outoutR = Math.min(stickDragR / baseR, 1);
+    outputR = Math.min(stickDragR / baseR, 1);
     if (stickDragR>baseR){
       stickDragX=stickDragX/stickDragR*baseR;
       stickDragY=stickDragY/stickDragR*baseR;
