@@ -9,11 +9,11 @@ canvas.addEventListener('mousedown', (e)=>{
   dragStartX = e.clientX;
   dragStartY = e.clientY;
   dragStartQTotal = qTotal;
-})
+});
 
 canvas.addEventListener('mouseup', (e)=>{
   drag = false;
-})
+});
 
 canvas.addEventListener('mousemove', (e)=>{
   if (drag) {
@@ -26,18 +26,18 @@ canvas.addEventListener('mousemove', (e)=>{
       redraw();
     }
   }
-})
+});
 
 canvas.addEventListener('touchstart', (e)=>{
   drag = true;
   dragStartX = e.touches[0].clientX;
   dragStartY = e.touches[0].clientY;
   dragStartQTotal = qTotal;
-})
+});
 
 canvas.addEventListener('touchend', (e)=>{
   drag = false;
-})
+});
 
 canvas.addEventListener('touchmove', (e)=>{
   e.preventDefault();
@@ -51,4 +51,4 @@ canvas.addEventListener('touchmove', (e)=>{
       redraw();
     }
   }
-}, { passive: false })
+}, { passive: false });

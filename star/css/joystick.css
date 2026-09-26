@@ -1,0 +1,32 @@
+#stick-base-frame {
+  right: 5%;
+  bottom: 5%;
+  position: absolute;
+}
+
+#stick-base {
+  width: max(20vw,20vh);
+  height: max(20vw,20vh);
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 50%;
+  position: relative;
+  touch-action: none;
+}
+
+#stick {
+  width: 30%;
+  height: 30%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  cursor: pointer;
+}
+
+#stick:active {
+  background-color: rgba(255, 255, 255, 1);
+}

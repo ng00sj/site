@@ -79,7 +79,7 @@ function zoomBig() {
   zoom*=1.1;
   if (zoom>zoom_max) {zoom=zoom_max;}
   urlParams.set('z', String(zoom));
-  RenewUrlPar();
+  renewUrlPar();
   reRun();
 }
 
@@ -87,18 +87,18 @@ function zoomSmall() {
   zoom*=0.9;
   if (zoom<zoom_min) {zoom=zoom_min;}
   urlParams.set('z', String(zoom));
-  RenewUrlPar();
+  renewUrlPar();
   reRun();
 }
 
 function zoomReset() {
   zoom=0.3;
   urlParams.set('z', String(zoom));
-  RenewUrlPar();
+  renewUrlPar();
   reRun();
 }
 
-function RenewUrlPar() {
+function renewUrlPar() {
   const newQueryString = urlParams.toString() ? `?${urlParams.toString()}` : '';
   const newUrl = `${window.location.pathname}${newQueryString}`;
   window.history.pushState({ path: newUrl }, '', newUrl);
