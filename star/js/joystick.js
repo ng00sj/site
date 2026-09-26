@@ -50,7 +50,7 @@ window.addEventListener('mousemove', (e)=>{
 let lastTime = performance.now();
 
 function gameLoop(currentTime){
-  let dt= (currentTime-LastTime)/1000;
+  let dt= (currentTime-lastTime)/1000;
   lastTime=currentTime;
   
   if (dt>0.1){dt=0.1;}
