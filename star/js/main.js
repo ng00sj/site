@@ -9,15 +9,16 @@ const par_zoom = parseFloat(urlParams.get('z')) || 0.3;
 
 
 let radius = 50;
-
 let qTotal = [1,0,0,0];
-const sq2 = Math.sqrt(2);
+const zoom_max = 10;
+const zoom_min = 0.1;
+
 let vPoints = [];
 let pointsColor = [];
 let pointsSize = [];
 
 let zoom = 0.3;
-if ((par_zoom>=0.1) && (par_zoom<=10)) {
+if ((par_zoom>=zoom_max) && (par_zoom<=zoom_min)) {
   zoom = par_zoom;
 }
 
@@ -75,13 +76,18 @@ function rotZ() {
 }
 
 function zoomBig() {
-  if (zoom<10) {zoom*=1.1;urlParams.set('z', String(zoom)); RenewUrlPar();}
+  zoom*=1.1;
+  if (zoom>zoom_max) {zoom=zoom_max;}
+  urlParams.set('z', String(zoom));
+  RenewUrlPar();
   reRun();
 }
 
 function zoomSmall() {
-  if (zoom>0.1) {zoom*=0.9;urlParams.set('z', String(zoom)); RenewUrlPar();}
-  reRun();
+  zoom*=0.9;
+  if (zoom<zoom_min) {zoom=zoom_min;}
+  urlParams.set('z', String(zoom));
+  RenewUrlPar();  reRun();
 }
 
 function RenewUrlPar() {
