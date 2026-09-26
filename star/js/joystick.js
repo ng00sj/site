@@ -51,6 +51,37 @@ window.addEventListener('mousemove', (e)=>{
   }
 });
 
+el_stick.addEventListener('touchstart', (e)=>{
+  stickDrag = true;
+  stickDragStartX = e.touches[0].clientX;
+  stickDragStartY = e.touches[0].clientY;
+});
+
+window.addEventListener('touchend', (e)=>{
+  if (stickDrag){
+    stickDrag = false;
+    resetStick();
+  }
+});
+
+window.addEventListener('touchmove', (e)=>{
+  if (stickDrag){
+    baseR = (el_base.clientWidth-el_stick.clientWidth) / 2;
+    let stickDragX = e.touches[0].clientX-stickDragStartX;
+    let stickDragY = e.touches[0].clientY-stickDragStartY;
+    const stickDragR = Math.sqrt(stickDragX**2+stickDragY**2);
+    outputX = stickDragX / stickDragR;
+    outputY = stickDragY / stickDragR;
+    outputR = Math.min(stickDragR / baseR, 1);
+    if (stickDragR>baseR){
+      stickDragX=stickDragX/stickDragR*baseR;
+      stickDragY=stickDragY/stickDragR*baseR;
+    }
+    el_stick.style.left = `calc(50% + ${stickDragX}px)`;
+    el_stick.style.top = `calc(50% + ${stickDragY}px)`;
+  }
+}, { passive: false });
+
 let lastTime = performance.now();
 
 function gameLoop(currentTime){
@@ -58,7 +89,7 @@ function gameLoop(currentTime){
   lastTime=currentTime;
   
   if (dt>0.1){dt=0.1;}
-  const qStep = qMake(Math.PI/20*dt*outputR,[outputY,-outputX,0]);
+  const qStep = qMake(Math.PI/10*dt*outputR,[outputY,-outputX,0]);
   qTotal = qMult(qStep, qTotal);
   redraw();
   

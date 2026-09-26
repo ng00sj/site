@@ -19,9 +19,9 @@ canvas.addEventListener('mousemove', (e)=>{
   if (drag) {
     const dragX = e.clientX-dragStartX;
     const dragY = e.clientY-dragStartY;
-    const dragC = Math.sqrt(dragX**2+dragY**2);
-    if (dragC>0){
-      const dragQ = qMake(dragC/radius, [-dragY/dragC, dragX/dragC, 0]);
+    const dragR = Math.sqrt(dragX**2+dragY**2);
+    if (dragR>0){
+      const dragQ = qMake(dragR/radius, [-dragY/dragR, dragX/dragR, 0]);
       qTotal = qMult(dragQ, dragStartQTotal);
       redraw();
     }
@@ -44,9 +44,9 @@ canvas.addEventListener('touchmove', (e)=>{
   if (drag) {
     const dragX = e.touches[0].clientX-dragStartX;
     const dragY = e.touches[0].clientY-dragStartY;
-    const dragC = Math.sqrt(dragX**2+dragY**2);
-    if (dragC>0){
-      const dragQ = qMake(dragC/radius, [-dragY/dragC, dragX/dragC, 0]);
+    const dragR = Math.sqrt(dragX**2+dragY**2);
+    if (dragR>0){
+      const dragQ = qMake(dragR/radius, [-dragY/dragR, dragX/dragR, 0]);
       qTotal = qMult(dragQ, dragStartQTotal);
       redraw();
     }
