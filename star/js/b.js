@@ -3,6 +3,7 @@ const el_butRotY = document.getElementById('butRotY');
 const el_butRotZ = document.getElementById('butRotZ');
 const el_butZoomBig = document.getElementById('butZoomBig');
 const el_butZoomSmall = document.getElementById('butZoomSmall');
+const el_butZoomReset = document.getElementById('butZoomReset');
 
 el_butRotX.addEventListener('click', () => {
   rotX();
@@ -22,4 +23,8 @@ el_butZoomBig.addEventListener('click', () => {
 
 el_butZoomSmall.addEventListener('click', () => {
   zoomSmall();
+});
+
+el_butZoomReset.addEventListener('click', () => {
+  zoomReset();
 });

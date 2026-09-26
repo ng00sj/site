@@ -18,7 +18,7 @@ let pointsColor = [];
 let pointsSize = [];
 
 let zoom = 0.3;
-if ((par_zoom>=zoom_max) && (par_zoom<=zoom_min)) {
+if ((par_zoom<=zoom_max) && (par_zoom>=zoom_min)) {
   zoom = par_zoom;
 }
 
@@ -87,7 +87,15 @@ function zoomSmall() {
   zoom*=0.9;
   if (zoom<zoom_min) {zoom=zoom_min;}
   urlParams.set('z', String(zoom));
-  RenewUrlPar();  reRun();
+  RenewUrlPar();
+  reRun();
+}
+
+function zoomSmall() {
+  zoom=0.3;
+  urlParams.set('z', String(zoom));
+  RenewUrlPar();
+  reRun();
 }
 
 function RenewUrlPar() {
