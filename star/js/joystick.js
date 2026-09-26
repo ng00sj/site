@@ -15,6 +15,9 @@ let outputR=0;
 function resetStick(){
   el_stick.style.left = '50%';
   el_stick.style.top = '50%';
+  outputX=0;
+  outputY=0;
+  outputR=0;
 }
 
 el_stick.addEventListener('mousedown', (e)=>{
