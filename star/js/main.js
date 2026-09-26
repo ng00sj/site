@@ -16,12 +16,10 @@ let vPoints = [];
 let pointsColor = [];
 let pointsSize = [];
 
+let zoom = 0.3;
 if (urlParams.has('z') && (par_zoom>=0.1) && (par_zoom<=10)) {
   let zoom = par_zoom;
-} else {
-  let zoom = 0.3;
 }
-
 
 const qStepX = qMake(Math.PI/40,[1,0,0]);
 const qStepY = qMake(Math.PI/40,[0,1,0]);
