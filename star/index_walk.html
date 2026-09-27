@@ -8,18 +8,19 @@
         <meta name="keywords" content="網站">
         <meta name="viewport" content="width=device-width, initial-scale=1.0", user-scalable=no">
         <link rel="stylesheet" type="text/css" href="css/0.css">
-        <link rel="stylesheet" type="text/css" href="css/b.css">
+        <link rel="stylesheet" type="text/css" href="css/button.css">
         <link rel="stylesheet" type="text/css" href="css/joystick.css">
         <link rel="icon" type="image/x-icon" href="img/ico.png">
     </head>
     <body>
         <canvas id="canvas"></canvas>
-        <button id="butRotX" class="but">旋轉X</button>
-        <button id="butRotY" class="but">旋轉Y</button>
-        <button id="butRotZ" class="but">旋轉Z</button>
+        <button id="butRotX" class="but" hidden>旋轉X</button>
+        <button id="butRotY" class="but" hidden>旋轉Y</button>
+        <button id="butRotZ" class="but" hidden>旋轉Z</button>
         <button id="butZoomBig" class="but">+</button>
         <button id="butZoomSmall" class="but">-</button>
         <button id="butZoomReset" class="but">=</button>
+        <button id="butFull" class="but">全</button>
         <div id="stick-base-frame"><div id="stick-base">
           <div id="stick"></div>
         </div></div>
@@ -34,7 +35,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
         <script src="js/q.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/b.js"></script>
+        <script src="js/button.js"></script>
         <script src="js/joystick.js"></script>
     </body>
 </html>
