@@ -89,12 +89,14 @@ function gameLoop(currentTime){
   lastTime=currentTime;
   
   if (dt>0.1){dt=0.1;}
-  const qStep = qMake(Math.PI/10*dt*outputR,[outputY,-outputX,0]);
-  qTotal = qMult(qStep, qTotal);
-  rotNormalize();
-  setQTotalPar();
-  renewUrlPar();
-  redraw();
+  if (stickDrag) {
+    const qStep = qMake(Math.PI/10*dt*outputR,[outputY,-outputX,0]);
+    qTotal = qMult(qStep, qTotal);
+    rotNormalize();
+    setQTotalPar();
+    renewUrlPar();
+    redraw();
+  }
   
   requestAnimationFrame(gameLoop);
 }
