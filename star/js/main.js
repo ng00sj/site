@@ -1,22 +1,20 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const urlParams = new URLSearchParams(window.location.search);
-//const par_q1 = urlParams.get('p1');
-//const par_q2 = urlParams.get('p2');
-//const par_q3 = urlParams.get('p3');
-//const par_q4 = urlParams.get('p4');
 const par_zoom = parseFloat(urlParams.get('z')) || 0.3;
+const par_q = [parseFloat(urlParams.get('q0')),parseFloat(urlParams.get('q1')),parseFloat(urlParams.get('q2')),parseFloat(urlParams.get('q3'))] || [1,0,0,0];
+const par_q_norm = Math.sqrt(par_q[0]*par_q[0]+par_q[1]*par_q[1]+par_q[2]*par_q[2]+par_q[3]*par_q[3]);
 
+let rotNum = 0;
 
 let radius = 50;
-let qTotal = [1,0,0,0];
-const zoom_max = 10;
-const zoom_min = 0.1;
-
+let qTotal = par_q[par_q[0]/par_q_norm,par_q[1]/par_q_norm,par_q[2]/par_q_norm,par_q[3]/par_q_norm] || [1,0,0,0];
 let vPoints = [];
 let pointsColor = [];
 let pointsSize = [];
 
+const zoom_max = 10;
+const zoom_min = 0.1;
 let zoom = 0.3;
 if ((par_zoom<=zoom_max) && (par_zoom>=zoom_min)) {
   zoom = par_zoom;
@@ -62,16 +60,19 @@ function reRun() {
 
 function rotX() {
   qTotal = qMult(qStepX, qTotal);
+  rotNormalize();
   redraw();
 }
 
 function rotY() {
   qTotal = qMult(qStepY, qTotal);
+  rotNormalize();
   redraw();
 }
 
 function rotZ() {
   qTotal = qMult(qStepZ, qTotal);
+  rotNormalize();
   redraw();
 }
 
@@ -102,6 +103,27 @@ function renewUrlPar() {
   const newQueryString = urlParams.toString() ? `?${urlParams.toString()}` : '';
   const newUrl = `${window.location.pathname}${newQueryString}`;
   window.history.pushState({ path: newUrl }, '', newUrl);
+}
+
+function fullScreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen().catch((err) => {
+      console.log(`無法退出全螢幕: ${err.message}`);
+    }); 
+  }else{
+    document.documentElement.requestFullscreen().catch((err) => {
+      console.log(`無法進入全螢幕: ${err.message}`);
+    });
+  }
+  reRun();
+}
+
+function rotNormalize() {
+  rotNum+=1;
+  if (rotNum>99) {
+    rotNum=0;
+    qTotal = qUnit(qTotal);
+  }
 }
 
 fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((csvText)=>{

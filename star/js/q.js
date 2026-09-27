@@ -23,3 +23,14 @@ function qMake(theta,unit) {
   const s = Math.sin(theta/2);
   return [Math.cos(theta/2),s*unit[0],s*unit[1],s*unit[2]];
 }
+
+function qNorm(q) {
+  const [w,x,y,z] = q;
+  return Math.sqrt(w*w+x*x+y*y+z*z);
+}
+
+function qUnit(q) {
+  const [w,x,y,z] = q;
+  const n = qNorm;
+  return [w/n, x/n, y/n, z/n];
+}

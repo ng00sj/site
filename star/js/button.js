@@ -31,13 +31,5 @@ el_butZoomReset.addEventListener('click', () => {
 });
 
 el_butFull.addEventListener('click', () => {
-  if (document.fullscreenElement) {
-    document.exitFullscreen().catch((err) => {
-      console.log(`無法退出全螢幕: ${err.message}`);
-    }); 
-  }else{
-    document.documentElement.requestFullscreen().catch((err) => {
-      console.log(`無法進入全螢幕: ${err.message}`);
-    });
-  }
+  fullScreen()
 });
