@@ -31,6 +31,6 @@ function qNorm(q) {
 
 function qUnit(q) {
   const [w,x,y,z] = q;
-  const n = qNorm;
+  const n = qNorm(q);
   return [w/n, x/n, y/n, z/n];
 }
