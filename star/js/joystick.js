@@ -92,6 +92,8 @@ function gameLoop(currentTime){
   const qStep = qMake(Math.PI/10*dt*outputR,[outputY,-outputX,0]);
   qTotal = qMult(qStep, qTotal);
   rotNormalize();
+  setQTotalPar();
+  renewUrlPar();
   redraw();
   
   requestAnimationFrame(gameLoop);

@@ -3,12 +3,11 @@ const ctx = canvas.getContext('2d');
 const urlParams = new URLSearchParams(window.location.search);
 const par_zoom = parseFloat(urlParams.get('z')) || 0.3;
 const par_q = [parseFloat(urlParams.get('q0')),parseFloat(urlParams.get('q1')),parseFloat(urlParams.get('q2')),parseFloat(urlParams.get('q3'))] || [1,0,0,0];
-const par_q_norm = Math.sqrt(par_q[0]*par_q[0]+par_q[1]*par_q[1]+par_q[2]*par_q[2]+par_q[3]*par_q[3]);
 
 let rotNum = 0;
 
 let radius = 50;
-let qTotal = par_q[par_q[0]/par_q_norm,par_q[1]/par_q_norm,par_q[2]/par_q_norm,par_q[3]/par_q_norm] || [1,0,0,0];
+let qTotal = qUnit(par_q) || [1,0,0,0];
 let vPoints = [];
 let pointsColor = [];
 let pointsSize = [];
@@ -61,18 +60,24 @@ function reRun() {
 function rotX() {
   qTotal = qMult(qStepX, qTotal);
   rotNormalize();
+  setQTotalPar();
+  renewUrlPar();
   redraw();
 }
 
 function rotY() {
   qTotal = qMult(qStepY, qTotal);
   rotNormalize();
+  setQTotalPar();
+  renewUrlPar();
   redraw();
 }
 
 function rotZ() {
   qTotal = qMult(qStepZ, qTotal);
   rotNormalize();
+  setQTotalPar();
+  renewUrlPar();
   redraw();
 }
 
@@ -124,6 +129,13 @@ function rotNormalize() {
     rotNum=0;
     qTotal = qUnit(qTotal);
   }
+}
+
+function setQTotalPar() {
+  urlParams.set('q0', String(qTotal[0]));
+  urlParams.set('q1', String(qTotal[1]));
+  urlParams.set('q2', String(qTotal[2]));
+  urlParams.set('q3', String(qTotal[3]));
 }
 
 fetch('data/under6-result_20260506_232500.csv').then((res)=>res.text()).then((csvText)=>{
