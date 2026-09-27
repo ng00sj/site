@@ -7,7 +7,7 @@ const par_q = [parseFloat(urlParams.get('q0')),parseFloat(urlParams.get('q1')),p
 let rotNum = 0;
 
 let radius = 50;
-let qTotal = (qNorm(qTotal) ? qUnit(par_q) : [1,0,0,0]);
+let qTotal = (qNorm(par_q) ? qUnit(par_q) : [1,0,0,0]);
 let vPoints = [];
 let pointsColor = [];
 let pointsSize = [];
